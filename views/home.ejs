@@ -1,0 +1,33 @@
+<%- include('partials/header'); -%>
+
+
+    <h1>Home</h1>
+    <p><%= StartingContent %></p>
+
+    <% posts.forEach(function(post) { %> 
+        <form action="/delete" method="post">
+            <div class="container col-lg-3">
+                <div class="card card">
+                    <div class="card-body">
+                        <h1 class="card-title"><%= post.title %></h1>
+                        <p class="card-text"><%= post.description.substring(0, 100) + "..." %><a href="/posts/<%= post._id %>">Read More</a></p>
+                        <input type="checkbox" name="checkBox" value="<%= post._id %>" onChange="this.form.submit()"> Delete 
+                    </div>
+                </div>
+            </div>
+            <input type="hidden" name="listName" value="<%= listTitle %>">
+        </form>
+    <% }); %>
+    <div class="container col-lg-3 text-center">
+        <div class="card card">
+            <div class="card-body plus">
+                <h1 class="card-title">Add Post</h1>
+                <button class="btn btn-primary"><a href="/compose">+</a></button>
+            </div>
+        </div>
+    </div>
+    
+    
+
+    
+<%- include('partials/footer'); -%>
